@@ -1,1 +1,1 @@
-make: npm build
+make: npm run build
