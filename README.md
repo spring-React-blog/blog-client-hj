@@ -5,11 +5,11 @@
 
 ## Requirement
 
-- [ ] Nextjs ( React 18 )
-- [ ] Typescript ( without `any` )
+- [x] Nextjs ( React 18 )
+- [x] Typescript ( without `any` )
 - [ ] React Query, Recoil
-- [ ] Styled Components
-- [ ] Jest
+- [x] Styled Components
+- [x] Jest
 - [ ] Storybook
 - [ ] CI/CD with AWS BEANSTALK + github action
 
