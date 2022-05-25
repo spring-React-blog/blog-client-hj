@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "deploy": "git archive --format=zip main -o $(date +%s)-blog-client.zip",
     "lint": "next lint",
     "test": "jest --watch"
   },
