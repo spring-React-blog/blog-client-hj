@@ -5,16 +5,16 @@
 
 ## Requirement
 
-[] Nextjs ( React 18 )
-[] Typescript ( without `any` )
-[] React Query, Recoil
-[] Styled Components
-[] Jest
-[] Storybook
-[] CI/CD with AWS BEANSTALK + github action
+[ ] Nextjs ( React 18 )
+[ ] Typescript ( without `any` )
+[ ] React Query, Recoil
+[ ] Styled Components
+[ ] Jest
+[ ] Storybook
+[ ] CI/CD with AWS BEANSTALK + github action
 
 
 ## Optional
 
-[] Backend with Strapi(v4) - after study
-[] Cloudflare base deploy from beanstalk - worker & page
+[ ] Backend with Strapi(v4) - after study
+[ ] Cloudflare base deploy from beanstalk - worker & page
