@@ -4,9 +4,6 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -44,7 +41,7 @@ jobs:
       
       - name: Get unix time
         id: source_file_name
-        run: echo ::set-output name=SOURCE_FILE_NAME::$(date +%s)-blog-client-$SOURCE_BRANCH-$SOURCE_TAG.zip
+        run: echo ::set-output name=SOURCE_FILE_NAME::$(date +%s)-blog-client-$SOURCE_BRANCH-$SOURCE_TAG
         env:
           SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
           SOURCE_BRANCH: ${{ steps.branch_name.outputs.SOURCE_BRANCH }}
