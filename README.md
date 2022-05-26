@@ -1,3 +1,5 @@
+[Go](http://dev.blog.rockheung.xyz)
+
 ## Objective
 
 프로덕션 수준의 nextjs 기반 블로그를 만들어보자
@@ -11,7 +13,7 @@
 - [x] Styled Components
 - [x] Jest
 - [ ] Storybook
-- [ ] CI/CD with AWS BEANSTALK + github action
+- [x] CI/CD with AWS BEANSTALK + github action
 
 
 ## Optional
