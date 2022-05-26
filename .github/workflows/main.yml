@@ -42,7 +42,7 @@ jobs:
 
       - name: Get file name
         id: source_file_name
-        run: echo ::set-output name=SOURCE_FILE_NAME::$(date +%s)-blog-client-$GITHUB_BASE_REF-$NEW_TAG
+        run: echo ::set-output name=SOURCE_FILE_NAME::blog-client-$GITHUB_BASE_REF-$NEW_TAG
         env:
           GITHUB_BASE_REF: ${{ env.GITHUB_BASE_REF }}
           NEW_TAG: ${{ steps.tag_name.outputs.tagname }}
