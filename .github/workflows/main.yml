@@ -24,18 +24,23 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      - name: get branch name for naming zip file
-        id: branch_name
-        run: |
-          echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
-          echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
-          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
       
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.2.0
         with:
           node-version: 16.x
+
+      - name: Autotagger
+        id: tag_name
+        uses: ButlerLogic/action-autotag@stable
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      
+      - name: get branch name for naming zip file
+        id: branch_name
+        run: |
+          echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
+          echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
       
       - name: Get unix time
         id: source_file_name
@@ -43,7 +48,7 @@ jobs:
         env:
           SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
           SOURCE_BRANCH: ${{ steps.branch_name.outputs.SOURCE_BRANCH }}
-          SOURCE_TAG: ${{ steps.branch_name.outputs.SOURCE_TAG }}
+          SOURCE_TAG: ${{ steps.tag_name.outputs.tagname }}
 
       - name: ZIP source with git archive
         run: git archive --format=zip main -o "$SOURCE_FILE_NAME"
