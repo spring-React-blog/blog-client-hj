@@ -48,7 +48,7 @@ jobs:
           NEW_TAG: ${{ steps.tag_name.outputs.tagname }}
 
       - name: ZIP source with git archive
-        run: git archive --format=zip main -o "$SOURCE_FILE_NAME"
+        run: git archive --format=zip main -o "$SOURCE_FILE_NAME.zip"
         env:
           SOURCE_FILE_NAME: ${{ steps.source_file_name.outputs.SOURCE_FILE_NAME }}
 
