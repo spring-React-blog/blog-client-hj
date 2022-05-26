@@ -21,31 +21,31 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+
+      - name: Get unix time
+        id: deploy_time
+        run: echo ::set-output name=DEPLOY_TIMESTAMP::$(date +%s)
       
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.2.0
         with:
           node-version: 16.x
 
-      - name: Autotagger
+
+      - name: Auto tagging
         id: tag_name
         uses: ButlerLogic/action-autotag@stable
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      
-      - name: get branch name for naming zip file
-        id: branch_name
-        run: |
-          echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
-          echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
-      
-      - name: Get unix time
+          tag_prefix: "v"
+          tag_suffix: ".${{ steps.deploy_time.outputs.DEPLOY_TIMESTAMP }}"
+
+      - name: Get file name
         id: source_file_name
-        run: echo ::set-output name=SOURCE_FILE_NAME::$(date +%s)-blog-client-$SOURCE_BRANCH-$SOURCE_TAG
+        run: echo ::set-output name=SOURCE_FILE_NAME::$(date +%s)-blog-client-$GITHUB_BASE_REF-$NEW_TAG
         env:
-          SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
-          SOURCE_BRANCH: ${{ steps.branch_name.outputs.SOURCE_BRANCH }}
-          SOURCE_TAG: ${{ steps.tag_name.outputs.tagname }}
+          GITHUB_BASE_REF: ${{ env.GITHUB_BASE_REF }}
+          NEW_TAG: ${{ steps.tag_name.outputs.tagname }}
 
       - name: ZIP source with git archive
         run: git archive --format=zip main -o "$SOURCE_FILE_NAME"
