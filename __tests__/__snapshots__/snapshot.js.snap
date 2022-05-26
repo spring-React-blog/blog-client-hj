@@ -1,6 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders homepage unchanged 1`] = `
+.c0 {
+  margin: 0;
+  line-height: 1.16;
+  font-size: 4rem;
+}
+
+.c0 a {
+  color: #0070f3;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
 <div>
   <div
     class="container"
@@ -9,7 +21,7 @@ exports[`renders homepage unchanged 1`] = `
       class="main"
     >
       <h1
-        class="Title-sc-16qr6no-0 kpXnXs"
+        class="c0"
       >
         Welcome to 
         <a
