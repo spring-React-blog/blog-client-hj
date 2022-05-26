@@ -36,7 +36,6 @@ jobs:
         id: tag_name
         uses: ButlerLogic/action-autotag@stable
         with:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           tag_prefix: "v"
           tag_suffix: ".${{ steps.deploy_time.outputs.DEPLOY_TIMESTAMP }}"
 
@@ -48,9 +47,8 @@ jobs:
           NEW_TAG: ${{ steps.tag_name.outputs.tagname }}
 
       - name: ZIP source with git archive
-        run: git archive --format=zip "$GITHUB_BASE_REF" -o "$SOURCE_FILE_NAME.zip"
+        run: git archive --format=zip HEAD -o "$SOURCE_FILE_NAME.zip"
         env:
-          GITHUB_BASE_REF: ${{ env.GITHUB_BASE_REF }}
           SOURCE_FILE_NAME: ${{ steps.source_file_name.outputs.SOURCE_FILE_NAME }}
 
       - name: Beanstalk Deploy
